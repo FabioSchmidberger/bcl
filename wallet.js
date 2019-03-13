@@ -4,10 +4,12 @@ const keypair = require('keypair');
 
 const utils = require('./utils.js')
 
+// is a queue so that oldest money will be spend first
+
 /**
  * A wallet is a collection of "coins", where a coin is defined as
  * a UTXO (unspent transaction output) and its associated
- * transaction ID and output index.
+ * transaction ID and output index. (needed to generate valid input of transaction so we can spend th emoney)
  * 
  * In order to spend the coins, we also hold the public/private keys
  * associated with each coin.
@@ -98,6 +100,8 @@ module.exports = class Wallet {
     //
     // Return an object containing the array of inputs and the
     // amount of change needed.
+
+    // mining fee
 
 
     // Currently returning default values.

@@ -57,6 +57,7 @@ module.exports = class Miner extends Client {
    */
   startNewSearch(reuseRewardAddress=false) {
     // Creating a new address for receiving coinbase rewards.
+    // if we won the search we need a new address otherwise we'll keep it and if we lost we stick with the old to save computing
     // We reuse the old address if 
     if (!reuseRewardAddress) {
       this.rewardAddress = this.wallet.makeAddress();
@@ -86,6 +87,9 @@ module.exports = class Miner extends Client {
   findProof(oneAndDone=false) {
     let pausePoint = this.currentBlock.proof + NUM_ROUNDS_MINING;
     while (this.currentBlock.proof < pausePoint) {
+
+
+      // JS is single threaded so we have to stop and listen if there are any other messages
 
       //
       // **YOUR CODE HERE**

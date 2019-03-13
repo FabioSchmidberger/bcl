@@ -90,13 +90,15 @@ module.exports = class Block {
     this.prevBlockHash = prevBlock ? prevBlock.hashVal() : null;
     this.target = target || POW_TARGET;
 
-    // Storing transactions in a Map to preserve key order.
+    // Storing transactions in a Map to preserve key order. 
+    // we don't use merkel tree in this example
     this.transactions = new Map();
 
     // Used to determine the winner between competing chains.
     // Note that this is a little simplistic -- an attacker
     // make a long, but low-work chain.  However, this works
     // well enough for us.
+    // bitcoin uses the chain with the most work on it, just using longer chain can easier be attacked
     this.chainLength = prevBlock ? prevBlock.chainLength+1 : 1;
 
     this.timestamp = Date.now();

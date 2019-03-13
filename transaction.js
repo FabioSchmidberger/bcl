@@ -30,7 +30,10 @@ module.exports = class Transaction {
    * An input is a triple of a transaction ID, the index of an output
    * within that transaction ID, and the public key that matches the
    * hash of the public key from a previous output.  It is in the form:
-   *  {txID, outputIndex, pubKey, sig}
+   *  {txID, outputIndex, pubKey, sig} 
+   * 
+   * // amount is missing: Transactions have list of inputs and outputs
+   * address is public key hash (determines who gets the money)
    * 
    * @constructor
    * @param {Object} obj - The inputs and outputs of the transaction.
@@ -86,6 +89,8 @@ module.exports = class Transaction {
    * @returns {boolean} True if the transaction is valid, false otherwise.
    */
   isValid(utxos) {
+
+    // you have to go back and sum up the transactions that is the hard part
 
     //
     // **YOUR CODE HERE**
